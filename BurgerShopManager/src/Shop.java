@@ -2,6 +2,8 @@ public class Shop {
 	private String name;
 	private double taxRate;
 	private String currency;
+	private double totalForToday;
+	private int orderNumber;
 
 //	Bread types
 	private Bread standardBread;
@@ -27,6 +29,8 @@ public class Shop {
 		this.name = name;
 		this.taxRate = taxRate;
 		this.currency = currency;
+		this.totalForToday = 0.00;
+		this.orderNumber = 1;
 
 		this.standardBread = new Bread("White Bun", 1.00);
 		this.brownRyeBread = new Bread("Brown Rye Bun", 2.20);
@@ -47,6 +51,20 @@ public class Shop {
 
 	public void newOrder(Bread orderBread, Meat orderMeat) {
 		Burger order = new Burger(orderBread, orderMeat);
-		System.out.println(order);
+		order.addAddition(lettuce);
+		double orderCost = order.printReceipt(taxRate, currency);
+		totalForToday += orderCost;
+		System.out.println("Thank you for eating at " + name + "! Order #: " + orderNumber);
+		orderNumber += 1;
+	}
+
+	public double getTotalForToday() {
+		return totalForToday;
+	}
+
+	public static void main(String[] args) {
+		Shop billShop = new Shop("Bill's Shop", 20, "Euro");
+
+		billShop.newOrder(billShop.standardBread, billShop.standardBeef);
 	}
 }

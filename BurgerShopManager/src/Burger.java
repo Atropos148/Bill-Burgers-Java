@@ -29,11 +29,6 @@ public class Burger {
 		double totalBurgerCost = price;
 		double totalAdditionsCost = 0.0;
 
-		totalAdditionsCost += additionFirst.getCost();
-		totalAdditionsCost += additionSecond.getCost();
-		totalAdditionsCost += additionThird.getCost();
-		totalAdditionsCost += additionFourth.getCost();
-
 		totalBurgerCost += meatType.getCost();
 		totalBurgerCost += breadType.getCost();
 
@@ -42,20 +37,24 @@ public class Burger {
 		System.out.println("Hello! This is your receipt for " + name);
 		System.out.println("Burger " + totalBurgerCost);
 		if (additionFirst != null) {
-			System.out.println(additionFirst.getName() + " " + additionFirst.getCost() + currency);
+			totalAdditionsCost += additionFirst.getCost();
+			System.out.println(additionFirst.getName() + " " + additionFirst.getCost() + " "  + currency);
 		}
 		if (additionSecond != null) {
-			System.out.println(additionSecond.getName() + " " + additionSecond.getCost() + currency);
+			totalAdditionsCost += additionSecond.getCost();
+			System.out.println(additionSecond.getName() + " " + additionSecond.getCost() + " "  + currency);
 		}
 		if (additionThird != null) {
-			System.out.println(additionThird.getName() + " " + additionThird.getCost() + currency);
+			totalAdditionsCost += additionThird.getCost();
+			System.out.println(additionThird.getName() + " " + additionThird.getCost() + " "  + currency);
 		}
 		if (additionFourth != null) {
-			System.out.println(additionFourth.getName() + " " + additionFourth.getCost() + currency);
+			totalAdditionsCost += additionFourth.getCost();
+			System.out.println(additionFourth.getName() + " " + additionFourth.getCost() + " " + currency);
 		}
-		System.out.println("Total Additions Cost " + totalAdditionsCost);
-		System.out.println("Total before tax " + completeTotal);
-		System.out.println("Total to pay " + (completeTotal + (completeTotal / taxRate)));
+		System.out.println("Total Additions Cost " + totalAdditionsCost + " "  + currency);
+		System.out.println("Total before tax " + completeTotal  + " "  + currency);
+		System.out.println("Total to pay " + (completeTotal + (completeTotal / taxRate)) + " "  + currency);
 		return completeTotal + (completeTotal / taxRate);
 	}
 
@@ -70,7 +69,6 @@ public class Burger {
 			} else {
 				additionFourth = newAddition;
 			}
-			System.out.println(newAddition.getName() + " added to burger " + this.name);
 		} else {
 			System.out.println("You cannot add more additions. Max additions:" + maxAdditions);
 		}
