@@ -59,15 +59,19 @@ public class Burger {
 	}
 
 	public void addAddition(Addition newAddition) {
-		if (currentAdditions + 1 <= maxAdditions) {
+		if (currentAdditions < maxAdditions) {
 			if (additionFirst == null) {
 				additionFirst = newAddition;
+				currentAdditions += 1;
 			} else if (additionSecond == null) {
 				additionSecond = newAddition;
+				currentAdditions += 1;
 			} else if (additionThird == null) {
 				additionThird = newAddition;
+				currentAdditions += 1;
 			} else {
 				additionFourth = newAddition;
+				currentAdditions += 1;
 			}
 		} else {
 			System.out.println("You cannot add more additions. Max additions:" + maxAdditions);
