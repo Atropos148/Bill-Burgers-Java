@@ -25,20 +25,38 @@ public class Burger {
 		this.additionFourth = null;
 	}
 
-	public Addition getAdditionFirst() {
-		return additionFirst;
-	}
+	public double printReceipt(double taxRate, String currency) {
+		double totalBurgerCost = price;
+		double totalAdditionsCost = 0.0;
 
-	public Addition getAdditionSecond() {
-		return additionSecond;
-	}
+		totalAdditionsCost += additionFirst.getCost();
+		totalAdditionsCost += additionSecond.getCost();
+		totalAdditionsCost += additionThird.getCost();
+		totalAdditionsCost += additionFourth.getCost();
 
-	public Addition getAdditionThird() {
-		return additionThird;
-	}
+		totalBurgerCost += meatType.getCost();
+		totalBurgerCost += breadType.getCost();
 
-	public Addition getAdditionFourth() {
-		return additionFourth;
+		double completeTotal = totalBurgerCost + totalAdditionsCost;
+
+		System.out.println("Hello! This is your receipt for " + name);
+		System.out.println("Burger " + totalBurgerCost);
+		if (additionFirst != null) {
+			System.out.println(additionFirst.getName() + " " + additionFirst.getCost() + currency);
+		}
+		if (additionSecond != null) {
+			System.out.println(additionSecond.getName() + " " + additionSecond.getCost() + currency);
+		}
+		if (additionThird != null) {
+			System.out.println(additionThird.getName() + " " + additionThird.getCost() + currency);
+		}
+		if (additionFourth != null) {
+			System.out.println(additionFourth.getName() + " " + additionFourth.getCost() + currency);
+		}
+		System.out.println("Total Additions Cost " + totalAdditionsCost);
+		System.out.println("Total before tax " + completeTotal);
+		System.out.println("Total to pay " + (completeTotal + (completeTotal / taxRate)));
+		return completeTotal + (completeTotal / taxRate);
 	}
 
 	public void addAddition(Addition newAddition) {
