@@ -36,10 +36,9 @@ public class Burger {
 		totalBurgerCost += meatType.getCost();
 		totalBurgerCost += breadType.getCost();
 
-		double completeTotal = totalBurgerCost + totalAdditionsCost;
-
-		System.out.println("Hello! This is your receipt for " + name);
-		System.out.println("Burger " + totalBurgerCost);
+		System.out.println();
+		System.out.println("Hello! This is your receipt for " + getClass().getSimpleName());
+		System.out.println("Burger " + totalBurgerCost + " " + currency);
 		if (additionFirst != null) {
 			totalAdditionsCost += additionFirst.getCost();
 			System.out.println(additionFirst.getName() + " " + additionFirst.getCost() + " "  + currency);
@@ -56,6 +55,8 @@ public class Burger {
 			totalAdditionsCost += additionFourth.getCost();
 			System.out.println(additionFourth.getName() + " " + additionFourth.getCost() + " " + currency);
 		}
+		double completeTotal = totalBurgerCost + totalAdditionsCost;
+		System.out.println(Math.round(completeTotal * 100.0)/100.0);
 		System.out.println("Total Additions Cost " + totalAdditionsCost + " "  + currency);
 		System.out.println("Total before tax " + completeTotal  + " "  + currency);
 		System.out.println("Total to pay " + (completeTotal + (completeTotal / taxRate)) + " "  + currency);

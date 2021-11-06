@@ -57,6 +57,10 @@ public class Shop {
 			order = new HealthyBurger(orderBread, orderMeat, 6);
 		} else if (Objects.equals(typeOfBurger, "standard")) {
 			order = new Burger(orderBread, orderMeat, 4);
+		} else if (Objects.equals(typeOfBurger, "deluxe")) {
+			order = new DeluxeBurger(orderBread, orderMeat, 2);
+			order.addAddition(frenchFries);
+			order.addAddition(drink);
 		}
 		assert order != null;
 		order.addAddition(lettuce);
@@ -76,6 +80,8 @@ public class Shop {
 		billShop.newOrder(billShop.standardBread, billShop.standardBeef, "standard");
 
 		billShop.newOrder(billShop.brownRyeBread, billShop.impossibleMeat, "healthy");
+
+		billShop.newOrder(billShop.standardBread, billShop.standardBeef, "deluxe");
 
 		System.out.println("Today's total: " + billShop.getTotalForToday());
 	}
