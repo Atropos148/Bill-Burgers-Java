@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Shop {
 	private String name;
 	private double taxRate;
@@ -49,8 +51,14 @@ public class Shop {
 		this.drink = new Addition("One Standard Cup", 2.20);
 	}
 
-	public void newOrder(Bread orderBread, Meat orderMeat) {
-		Burger order = new Burger(orderBread, orderMeat);
+	public void newOrder(Bread orderBread, Meat orderMeat, String typeOfBurger) {
+		Burger order = null;
+		if (Objects.equals(typeOfBurger, "healthy")){
+			order = new HealthyBurger(orderBread, orderMeat, 6);
+		} else if (Objects.equals(typeOfBurger, "standard")) {
+			order = new Burger(orderBread, orderMeat, 4);
+		}
+		assert order != null;
 		order.addAddition(lettuce);
 		double orderCost = order.printReceipt(taxRate, currency);
 		totalForToday += orderCost;
@@ -65,6 +73,10 @@ public class Shop {
 	public static void main(String[] args) {
 		Shop billShop = new Shop("Bill's Shop", 20, "Euro");
 
-		billShop.newOrder(billShop.standardBread, billShop.standardBeef);
+		billShop.newOrder(billShop.standardBread, billShop.standardBeef, "standard");
+
+		billShop.newOrder(billShop.brownRyeBread, billShop.impossibleMeat, "healthy");
+
+		System.out.println("Today's total: " + billShop.getTotalForToday());
 	}
 }

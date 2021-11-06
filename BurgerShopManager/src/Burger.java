@@ -11,18 +11,22 @@ public class Burger {
 	private Addition additionThird;
 	private Addition additionFourth;
 
-	public Burger(Bread breadType, Meat meatType) {
+	public Burger(Bread breadType, Meat meatType, int maxAdditions) {
 		this.breadType = breadType;
 		this.meatType = meatType;
 		this.price = 2.0;
 		this.name = "The Standard";
-		this.maxAdditions = 4;
+		this.maxAdditions = maxAdditions;
 		this.currentAdditions = 0;
 
 		this.additionFirst = null;
 		this.additionSecond = null;
 		this.additionThird = null;
 		this.additionFourth = null;
+	}
+
+	public int getMaxAdditions() {
+		return maxAdditions;
 	}
 
 	public double printReceipt(double taxRate, String currency) {
