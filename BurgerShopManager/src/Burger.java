@@ -56,7 +56,6 @@ public class Burger {
 			System.out.println(additionFourth.getName() + " " + additionFourth.getCost() + " " + currency);
 		}
 		double completeTotal = totalBurgerCost + totalAdditionsCost;
-		System.out.println(Math.round(completeTotal * 100.0)/100.0);
 		System.out.println("Total Additions Cost " + totalAdditionsCost + " "  + currency);
 		System.out.println("Total before tax " + completeTotal  + " "  + currency);
 		System.out.println("Total to pay " + (completeTotal + (completeTotal / taxRate)) + " "  + currency);

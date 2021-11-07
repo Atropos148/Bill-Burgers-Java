@@ -32,7 +32,7 @@ public class Shop {
 		this.taxRate = taxRate;
 		this.currency = currency;
 		this.totalForToday = 0.00;
-		this.orderNumber = 1;
+		this.orderNumber = 0;
 
 		this.standardBread = new Bread("White Bun", 1.00);
 		this.brownRyeBread = new Bread("Brown Rye Bun", 2.20);
@@ -51,7 +51,7 @@ public class Shop {
 		this.drink = new Addition("One Standard Cup", 2.20);
 	}
 
-	public void newOrder(Bread orderBread, Meat orderMeat, String typeOfBurger) {
+	public Burger newOrder(Bread orderBread, Meat orderMeat, String typeOfBurger) {
 		Burger order = null;
 		if (Objects.equals(typeOfBurger, "healthy")){
 			order = new HealthyBurger(orderBread, orderMeat, 6);
@@ -63,11 +63,13 @@ public class Shop {
 			order.addAddition(drink);
 		}
 		assert order != null;
-		order.addAddition(lettuce);
-		double orderCost = order.printReceipt(taxRate, currency);
-		totalForToday += orderCost;
-		System.out.println("Thank you for eating at " + name + "! Order #: " + orderNumber);
+
 		orderNumber += 1;
+		return order;
+	}
+
+	public void addToDayTotal(double orderCost) {
+		totalForToday += orderCost;
 	}
 
 	public double getTotalForToday() {
@@ -77,11 +79,20 @@ public class Shop {
 	public static void main(String[] args) {
 		Shop billShop = new Shop("Bill's Shop", 20, "Euro");
 
-		billShop.newOrder(billShop.standardBread, billShop.standardBeef, "standard");
+		Burger standard = billShop.newOrder(billShop.standardBread, billShop.standardBeef, "standard");
+		standard.addAddition(billShop.lettuce);
+		billShop.addToDayTotal(standard.printReceipt(billShop.taxRate, billShop.currency));
+		System.out.println("Thank you for eating at " + billShop.name + "! Order #: " + billShop.orderNumber);
 
-		billShop.newOrder(billShop.brownRyeBread, billShop.impossibleMeat, "healthy");
+		Burger healthy = billShop.newOrder(billShop.brownRyeBread, billShop.impossibleMeat, "healthy");
+		healthy.addAddition(billShop.tomato);
+		billShop.addToDayTotal(healthy.printReceipt(billShop.taxRate, billShop.currency));
+		System.out.println("Thank you for eating at " + billShop.name + "! Order #: " + billShop.orderNumber);
 
-		billShop.newOrder(billShop.standardBread, billShop.standardBeef, "deluxe");
+		Burger deluxe = billShop.newOrder(billShop.standardBread, billShop.standardBeef, "deluxe");
+		deluxe.addAddition(billShop.lettuce);
+		billShop.addToDayTotal(deluxe.printReceipt(billShop.taxRate, billShop.currency));
+		System.out.println("Thank you for eating at " + billShop.name + "! Order #: " + billShop.orderNumber);
 
 		System.out.println("Today's total: " + billShop.getTotalForToday());
 	}
