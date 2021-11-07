@@ -29,6 +29,42 @@ public class Burger {
 		return maxAdditions;
 	}
 
+	public int getCurrentAdditions() {
+		return currentAdditions;
+	}
+
+	public void setCurrentAdditions(int currentAdditions) {
+		this.currentAdditions = currentAdditions;
+	}
+
+	public Bread getBreadType() {
+		return breadType;
+	}
+
+	public Meat getMeatType() {
+		return meatType;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public Addition getAdditionFirst() {
+		return additionFirst;
+	}
+
+	public Addition getAdditionSecond() {
+		return additionSecond;
+	}
+
+	public Addition getAdditionThird() {
+		return additionThird;
+	}
+
+	public Addition getAdditionFourth() {
+		return additionFourth;
+	}
+
 	public double printReceipt(double taxRate, String currency) {
 		double totalBurgerCost = price;
 		double totalAdditionsCost = 0.0;
@@ -81,6 +117,7 @@ public class Burger {
 			System.out.println("You cannot add more additions. Max additions:" + maxAdditions);
 		}
 	}
+
 
 
 }

@@ -22,6 +22,7 @@ public class Shop {
 	private Addition tomato;
 	private Addition carrot;
 	private Addition eggSlices;
+	private Addition onionRings;
 
 //	Deluxe Additions
 	private Addition frenchFries;
@@ -46,6 +47,7 @@ public class Shop {
 		this.tomato = new Addition("Tomato", 2.00);
 		this.carrot = new Addition("Carrot slices", 2.00);
 		this.eggSlices = new Addition("Egg", 1.50);
+		this.onionRings = new Addition("Onion Rings", 0.50);
 
 		this.frenchFries = new Addition("French Fries", 3.50);
 		this.drink = new Addition("One Standard Cup", 2.20);
@@ -84,8 +86,13 @@ public class Shop {
 		billShop.addToDayTotal(standard.printReceipt(billShop.taxRate, billShop.currency));
 		System.out.println("Thank you for eating at " + billShop.name + "! Order #: " + billShop.orderNumber);
 
-		Burger healthy = billShop.newOrder(billShop.brownRyeBread, billShop.impossibleMeat, "healthy");
+		HealthyBurger healthy = (HealthyBurger) billShop.newOrder(billShop.brownRyeBread, billShop.impossibleMeat, "healthy");
 		healthy.addAddition(billShop.tomato);
+		healthy.addAddition(billShop.eggSlices);
+		healthy.addAddition(billShop.lettuce);
+		healthy.addAddition(billShop.cheeseShredded);
+		healthy.addExtraAdditions(billShop.carrot);
+		healthy.addExtraAdditions(billShop.onionRings);
 		billShop.addToDayTotal(healthy.printReceipt(billShop.taxRate, billShop.currency));
 		System.out.println("Thank you for eating at " + billShop.name + "! Order #: " + billShop.orderNumber);
 
